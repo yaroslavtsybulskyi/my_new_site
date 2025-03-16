@@ -1,0 +1,60 @@
+{% extends '_base.html' %}
+{% block title %}Our Services{% endblock %}
+{% block main %}
+    <section class="text-center bg-dark text-white py-5">
+        <div class="container">
+            <h1 class="display-4 fw-bold">🚀 Our Services</h1>
+            <p class="lead">Fast, reliable, and intergalactic. No delivery is too dangerous for Planet Express!</p>
+        </div>
+    </section>
+
+    <section class="container text-center my-5">
+        <h2 class="fw-bold text-primary">What We Offer</h2>
+        <p class="fs-5">We specialize in the most **challenging** and **high-risk** deliveries across the galaxy.</p>
+        <p>Total Services: {{ services|length }} service{{ services|length|pluralize }}</p>
+    </section>
+
+
+    <section class="container my-4">
+        <form method="GET" action="{% url 'services' %}" class="d-flex">
+            <input type="text" name="q" class="form-control me-2" placeholder="🔍 Search for a service..."
+                   value="{{ query }}">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+    </section>
+
+    {% if query %}
+        <section class="container my-5">
+            <h3 class="text-center text-warning">🔍 Search Results for "{{ query }}"</h3>
+            <ul class="list-group">
+                {% for service in services %}
+                    <li class="list-group-item">
+                        <strong>{{ service.name|title }}</strong> -
+                        <span class="badge bg-success">{{ service.price }}</span>
+                    </li>
+                {% empty %}
+                    <p class="text-center text-danger">No services found matching your search.</p>
+                {% endfor %}
+            </ul>
+        </section>
+    {% else %}
+
+
+        <section class="container my-5">
+            <ul class="list-group">
+                {% for service in services|slice:3 %}
+                    <li class="list-group-item">
+                        <strong>{{ service.name|title }}</strong> -
+                        <span class="badge bg-success">{{ service.price }}</span>
+                    </li>
+                {% empty %}
+                    <p class="text-center text-danger">No services found matching your search.</p>
+                {% endfor %}
+            </ul>
+        </section>
+
+    {% endif %}
+
+    <p>Do we offer services? {{ services|yesno:"Yes,No" }}</p>
+
+{% endblock %}

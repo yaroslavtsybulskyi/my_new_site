@@ -1,0 +1,17 @@
+{% extends '_base.html' %}
+
+{% block title %}Home|Planet Express{% endblock %}
+
+{% block main %}
+    <section class="text-center bg-dark text-white py-5">
+        <div class="container">
+            <h1 class="display-4 fw-bold">🚀 Welcome to Planet Express!</h1>
+            <p class="lead">Intergalactic delivery at light-speed efficiency (well, almost). We deliver **everywhere** in the universe!</p>
+            <a href="{% url 'services' %}" class="btn btn-warning btn-lg mt-3">Explore Our Services</a>
+        </div>
+    </section>
+    <section class="container text-center my-5">
+        <h2 class="fw-bold text-primary">Welcome to Planet Express</h2>
+        <p class="fs-5">{{ home_page_text }}</p>
+    </section>
+{% endblock %}

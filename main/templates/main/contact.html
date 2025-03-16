@@ -1,0 +1,45 @@
+{% extends '_base.html' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block main %}
+    <section class="text-center bg-dark text-white py-5">
+        <div class="container">
+            <h1 class="display-4 fw-bold">{{ contact_details.company_name|upper }}</h1>
+            <p class="lead">Fast, reliable, and intergalactic. No delivery is too dangerous for Planet Express!</p>
+        </div>
+    </section>
+    <section class="container my-5">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="fw-bold text-primary">Get in Touch</h2>
+                <p><strong>Address:</strong> {{ contact_details.address }}</p>
+                <p><strong>Phone:</strong> {{ contact_details.phone }}</p>
+                <p><strong>Email:</strong> <a href="mailto:{{ contact_details.email }}">{{ contact_details.email }}</a>
+                </p>
+                <p><strong>Fax:</strong> {{ contact_details.fax }}</p>
+                <p><strong>Support
+                    Email:</strong> {{ contact_details.support_email|default:"No support email available" }}</p>
+                <h3 class="text-success mt-4">Working Hours</h3>
+                <p><strong>Weekdays:</strong> {{ contact_details.working_hours.weekdays|lower }}</p>
+                <p><strong>Weekends:</strong> {{ contact_details.working_hours.weekends|safe }}</p>
+
+                <h3 class="text-warning mt-4">Emergency Contacts</h3>
+                <ul class="list-unstyled">
+                    <li><strong>Captain:</strong> {{ contact_details.emergency_contact.captain|truncatechars:20 }}</li>
+                    <li><strong>Robot Assistant:</strong> {{ contact_details.emergency_contact.robot_assistant }}</li>
+                    <li><strong>Intern:</strong> {{ contact_details.emergency_contact.intern }}</li>
+                </ul>
+                <h3 class="text-info mt-4">Follow Us</h3>
+                <p>
+                    <a href="{{ contact_details.social_media.twitter }}" class="btn btn-outline-primary btn-sm me-2"
+                       target="_blank">Twitter</a>
+                    <a href="{{ contact_details.social_media.facebook }}" class="btn btn-outline-primary btn-sm me-2"
+                       target="_blank">Facebook</a>
+                    <a href="{{ contact_details.social_media.instagram }}" class="btn btn-outline-primary btn-sm"
+                       target="_blank">Instagram</a>
+                </p>
+            </div>
+        </div>
+    </section>
+{% endblock %}
